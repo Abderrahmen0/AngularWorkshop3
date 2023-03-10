@@ -1,0 +1,28 @@
+<p>form-product works!</p>
+
+<div>
+    <form #f="ngForm">
+        <div class="form-group">
+            Id: <input type="number" name="id" required class="form-control" [(ngModel)]="product.id"  pattern="[0-9]" #id="ngModel">
+        </div>
+        <div class="alert alert-danger" *ngIf="id.invalid && id.touched">
+            <div *ngIf="id.errors?.['required']" >id is required</div>
+            <div *ngIf="id.errors?.['pattern']" >please provide a valid value</div>
+        </div>
+
+        <div class="form-group">
+            Title: <input type="number" name="title" class="form-control" [(ngModel)]="product.title" #t="ngModel"required minlength="8">
+        </div>
+        <div class="alert alert-danger" *ngIf="t.invalid && t.touched">
+            <div *ngIf="t.errors?.['required']" >title is required</div>
+            <div *ngIf="t.errors?.['minlength']" >please provide a valid value</div>
+        </div>
+        <div class="form-group">
+            quantity: <input type="number" name="quantity" class="form-control" [(ngModel)]="product.quantity" #q="ngModel">
+        </div>
+        <div class="alert alert-danger" *ngIf="q.invalid && q.touched">
+            <div *ngIf="q.errors?.['required']" >quantity is required</div>
+        </div>
+        <button class="btn btn-warning" [disabled]="f.invalid" (click)="save()"> save </button>
+    </form>
+</div>
